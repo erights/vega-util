@@ -1,5 +1,10 @@
 export default function(child, parent) {
   var proto = (child.prototype = Object.create(parent.prototype));
-  proto.constructor = child;
+  Object.defineProperty(proto, 'constructor', {
+    value: child,
+    writable: true,
+    enumerable: true,
+    configurable: true
+  });
   return proto;
 }
